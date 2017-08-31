@@ -36,6 +36,11 @@ namespace Our.Umbraco.FileSystemProviders.Azure
         private const string DisableVirtualPathProviderKey = Constants.Configuration.DisableVirtualPathProviderKey;
 
         /// <summary>
+        /// The configuration key for disabling the virtual path provider.
+        /// </summary>
+        private const string UseRelativePathsKey = Constants.Configuration.UseRelativePathsKey;
+
+        /// <summary>
         /// The delimiter.
         /// </summary>
         private const string Delimiter = "/";
@@ -93,6 +98,10 @@ namespace Our.Umbraco.FileSystemProviders.Azure
                                               && ConfigurationManager.AppSettings[DisableVirtualPathProviderKey]
                                              .Equals("true", StringComparison.InvariantCultureIgnoreCase);
 
+            this.UseRelativePaths = ConfigurationManager.AppSettings[UseRelativePathsKey] != null
+                                              && ConfigurationManager.AppSettings[UseRelativePathsKey]
+                                                  .Equals("true", StringComparison.InvariantCultureIgnoreCase);
+
             bool useEmulator = ConfigurationManager.AppSettings[UseStorageEmulatorKey] != null
                                && ConfigurationManager.AppSettings[UseStorageEmulatorKey]
                                                       .Equals("true", StringComparison.InvariantCultureIgnoreCase);
@@ -143,6 +152,11 @@ namespace Our.Umbraco.FileSystemProviders.Azure
         /// Gets or sets a value indicating whether to disable the virtual path provider.
         /// </summary>
         public bool DisableVirtualPathProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use relative paths irrespective of the virtual provider's state
+        /// </summary>
+        public bool UseRelativePaths { get; set; }
 
         /// <summary>
         /// Gets the container name.
@@ -547,12 +561,7 @@ namespace Our.Umbraco.FileSystemProviders.Azure
         /// </returns>
         public string GetUrl(string path)
         {
-            if (this.DisableVirtualPathProvider)
-            {
-                return this.ResolveUrl(path, false);
-            }
-
-            return this.ResolveUrl(path, true);
+            return this.ResolveUrl(path, this.UseRelativePaths);
         }
 
         /// <summary>

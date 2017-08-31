@@ -26,6 +26,11 @@ namespace Our.Umbraco.FileSystemProviders.Azure
             public const string DisableVirtualPathProviderKey = "AzureBlobFileSystem.DisableVirtualPathProvider";
 
             /// <summary>
+            /// Irrespective of whether the virtual path provider itself is disabled we can still provide virtual paths
+            /// </summary>
+            public const string UseRelativePathsKey = "AzureBlobFileSystem.UseRelativePaths";
+
+            /// <summary>
             /// The configuration key for enabling the storage emulator.
             /// </summary>
             public const string UseStorageEmulatorKey = "AzureBlobFileSystem.UseStorageEmulator";

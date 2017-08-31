@@ -16,19 +16,19 @@
 
   <!-- SHARED PROPERTIES -->
   <PropertyGroup>
-    <PackageName>UmbracoFileSystemProviders.Azure</PackageName>
-    <MinUmbracoVersion>7.1.9</MinUmbracoVersion>
-    <Readme>An Azure Blob Storage IFileSystem provider for Umbraco.</Readme>
+    <PackageName>UmbracoFileSystemProviders.Azure.Unily</PackageName>
+    <MinUmbracoVersion>7.5.12</MinUmbracoVersion>
+    <Readme>An Azure Blob Storage IFileSystem provider for Umbraco customised to enable relative paths when the virtual path provider is off.</Readme>
     <AuthorName>James Jackson-South, Dirk Seefeld, Lars-Erik Aabech, Jeavon Leopold</AuthorName>
     <AuthorUrl>https://github.com/JimBobSquarePants/UmbracoFileSystemProviders.Azure/graphs/contributors</AuthorUrl>
     <PackageLicenseName>Apache 2.0 license</PackageLicenseName>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <ProjectUrl>https://github.com/JimBobSquarePants/UmbracoFileSystemProviders.Azure</ProjectUrl>
+    <ProjectUrl>https://github.com/BrightStarr/UmbracoFileSystemProviders.Azure</ProjectUrl>
   </PropertyGroup>
 
   <!-- NUGET ONLY PROPERTIES -->
   <PropertyGroup>
-    <PackageId>UmbracoFileSystemProviders.Azure</PackageId>
+    <PackageId>UmbracoFileSystemProviders.Azure.Unily</PackageId>
     <Copyright>Copyright &#169; James Jackson-South and contributors.</Copyright>
     <Owners>James Jackson-South</Owners>
     <Description>An Azure Blob Storage IFileSystem provider for Umbraco. Used to offload static files in the media section to the cloud.</Description>
@@ -239,7 +239,7 @@
     <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\build\tools\NuGet.exe"
       ManifestFile="$(BuildNuGetDir)\package.nuspec"
       BasePath="$(BuildNuGetDir)"
-      Version="$(ProductVersion)"
+      Version="$(ProductVersion).101"
       OutputDirectory="$(ArtifactsDir)"
       Symbols="true" />
 

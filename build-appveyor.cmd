@@ -3,7 +3,7 @@ ECHO APPVEYOR_REPO_TAG: %APPVEYOR_REPO_TAG%
 ECHO APPVEYOR_BUILD_NUMBER : %APPVEYOR_BUILD_NUMBER%
 ECHO APPVEYOR_BUILD_VERSION : %APPVEYOR_BUILD_VERSION%
 
-CALL NuGet.exe restore src\UmbracoFileSystemProviders.Azure.sln
+CALL .\tools\NuGet.exe restore src\UmbracoFileSystemProviders.Azure.sln
 
 cd build
 
@@ -14,7 +14,7 @@ IF NOT EXIST "%toolsFolder%" (
 
 IF NOT EXIST "%toolsFolder%vswhere.exe" (
 	ECHO vswhere not found - fetching now
-	nuget install vswhere -Version 2.0.2 -Source nuget.org -OutputDirectory tools
+	"%toolsFolder%nuget.exe" install vswhere -Version 2.0.2 -Source nuget.org -OutputDirectory tools
 )
 
 FOR /f "delims=" %%A in ('dir "%toolsFolder%vswhere.*" /b') DO SET "vswhereExePath=%toolsFolder%%%A\"
